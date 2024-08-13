@@ -10,9 +10,12 @@ document.getElementById('weatherForm').addEventListener('submit', function(event
             return response.json();
         })
         .then(function(data) {
-            console.log(`Current temperature in ${location}: ${data.currentConditions.temp}°C`);
+            const fahrenheitTemp = data.currentConditions.temp;
+            const celsiusTemp = ((fahrenheitTemp - 32) * 5) / 9;
+            console.log(`Current temperature in ${location}: ${celsiusTemp.toFixed(2)}°C`);
         })
         .catch(function(error) {
             console.error('Error fetching the weather data:', error);
         });
 });
+
